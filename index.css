@@ -11,7 +11,7 @@ body {
     padding: 0;
     margin: 0 auto;
     
-    width: 600px;
+    max-width: 600px;
     /* outline: 2px solid gray; */
     /* background-color: yellow; */
     
