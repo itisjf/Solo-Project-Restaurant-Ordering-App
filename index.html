@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSS -->
+        <link rel="stylesheet" href="index.css">
+        <!-- Title -->
+        <title>Jimmy’s Diner</title>
+        <!-- Google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Smythe&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- HEADER -->
+        <header>
+            <h1>Jimmy’s Diner</h1>
+            <h2>The best burgers and pizzas in town.</h2>
+        </header>
+        
+        <!-- MAIN -->
+        <main>
+            <!-- MENU SECTION -->
+            <section id="menu-section">
+                <!-- menu items -->
+            </section>
+            
+            <!-- YOUR ORDER SECTION -->
+            <section id="your-order-section" class="your-order-section">
+                <h2>Your order</h2>
+                
+                <!-- ordered items list -->
+                <ul class="ordered-items-list" id="ordered-items-list">
+                    
+                </ul>
+                
+                <!-- order total price -->
+                <div class="order-total-price">
+                    <h2>Total price:</h2>
+                    <p id="total-price" class="ordered-item-price"></p>
+                </div>
+                
+                <!-- complete order button -->
+                <button id="complete-order-btn" class="confirm-btn">Complete order</button>
+            </section>
+            
+            <!-- THANKS MESSAGE -->
+            <h2 id="thanks-message" class="thanks-message"></h2>
+            
+        </main>
+        
+        <!-- MODAL - PAYMENT - CARD DETAILS SECTION -->
+        <div id="modal-overlay" class="modal-overlay">
+            <section class="modal-payment">
+                <button id="modal-close-btn" class="modal-close-btn">X</button>
+                <h2>Enter card details</h2>
+                <form id="payment-form">
+                    <input
+                        type="text"
+                        id="customersName"
+                        name="customersName"
+                        placeholder="Enter your name"
+                        required
+                        >
+                        
+                    <input
+                        type="text"
+                        inputmode="numeric"
+                        maxlength="19"
+                        pattern="\d*"
+                        id="cardNumber"
+                        name="cardNumber"
+                        class="numerical-input"
+                        placeholder="Enter card number"
+                        required
+                        >
+                    
+                    <input
+                        type="password"
+                        inputmode="numeric"
+                        maxlength="4"
+                        pattern="\d*"
+                        id="cardCvv"
+                        name="cardCvv"
+                        class="numerical-input"
+                        placeholder="Enter CVV"
+                        required
+                        >
+                    
+                    <button type="submit" id="pay-btn" class="confirm-btn">Pay</button>
+                </form>
+            </section>
+        </div>
+        
+	    <script src="index.js" type="module"></script>
+    </body>
+</html>
