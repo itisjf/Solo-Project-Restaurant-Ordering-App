@@ -1,9 +1,10 @@
+// -------- IMPORT data.js --------
+
 import { menuArray } from "./data.js"
+
+// -------- RENDERING MENU ITEMS --------
+
 const menuSection = document.getElementById("menu-section")
-
-// RENDERING MENU ITEMS
-// todo: iterate over the array, add the html to 1 string, set string as .innerHTML
-
 let menuHTML = ''
 
 menuArray.forEach(item => {
@@ -24,12 +25,13 @@ menuArray.forEach(item => {
 
 menuSection.innerHTML = menuHTML
 
-// YOUR ORDER SECTION ---- CREATE AN ARRAY OF ORDERED ITEMS
-// pridat "+" buttonom id-cka, ziskat id-cko kliknuteho buttonu pomocou e.target.id
+// -------- YOUR ORDER SECTION -------- 
+
+// ---- creating an array of ordered items ----
 
 let orderedItemsArray = []
 
-menuSection.addEventListener('click', function(e){
+menuSection.addEventListener('click', function(e) {
     if(e.target.classList.contains('plus-btn')) {
         orderedItemsArray.push({
             name: menuArray[e.target.id].name,
@@ -39,26 +41,27 @@ menuSection.addEventListener('click', function(e){
     }
 })
 
-// YOUR ORDER SECTION ---- RENDER ORDER
+// ---- rendering order ----
 
 const orderedItemsList = document.getElementById("ordered-items-list")
 const totalPrice = document.getElementById("total-price")
 const yourOrderSection = document.getElementById("your-order-section")
 const thanksMessage = document.getElementById("thanks-message")
 
-renderOrder()
-
 function renderOrder(){
+    // HIDING THANKS MESSAGE
     if(thanksMessage.style.display === "block") {
         thanksMessage.style.display = "none"
     }
-    // EMPTY ARRAY CHECK
+    
+    // EMPTY ARRAY CHECK / RENDERING ORDERED ITEMS LIST
     if (orderedItemsArray.length === 0) {
         yourOrderSection.style.display = "none"
     } else {
         yourOrderSection.style.display = "block"
         // RENDER ORDERED ITEMS LIST
-        orderedItemsList.innerHTML = orderedItemsArray.map((item, index) => `
+        orderedItemsList.innerHTML = orderedItemsArray.map((item, index) => {
+            return `
             <li data-index="${index}">
                 <div class="ordered-item-control">
                     <h2>${item.name}</h2>
@@ -66,7 +69,8 @@ function renderOrder(){
                 </div>
                 <p class="ordered-item-price">$${item.price}</p>
             </li>
-        `).join('')
+            `
+        }).join('')
         
         // RENDER TOTAL PRICE
         let sum = 0
@@ -76,7 +80,7 @@ function renderOrder(){
     
 }
 
-// YOUR ORDER SECTION ---- REMOVE BUTTON
+// ---- remove button ----
 
 orderedItemsList.addEventListener('click', function(e) {
     if (e.target.classList.contains('remove-btn')) {
@@ -86,19 +90,24 @@ orderedItemsList.addEventListener('click', function(e) {
     }
 })
 
-// MODAL - CARD DETAILS SECTION ---- Replace non-digit characters in numerical inputs
+// -------- MODAL - PAYMENT -------- 
 
-const numericalInputs = document.getElementsByClassName('numerical-input') // this will return me HTML collection
-const numericalInputsArray = Array.from(numericalInputs) // this will convert the HTMLCollection returned by getElementsByClassName into an array,
+// ---- removing non-digit characters in numerical inputs ----
+
+// HTMLCollection of numerical inputs
+const numericalInputs = document.getElementsByClassName('numerical-input')
+
+// convertion of the HTMLCollection into an array
+const numericalInputsArray = Array.from(numericalInputs)
 
 numericalInputsArray.forEach(numInput => {
     numInput.addEventListener("input", function(){
-        // Replace non-digit characters
+        // replace non-digit characters
         this.value = this.value.replace(/[^0-9]/g, '');
     });
 })
 
-// MODAL - appear/hide
+// ---- modal open / modal close ----
 
 const modalOverlay = document.getElementById("modal-overlay")
 const completeOrderBtn = document.getElementById("complete-order-btn")
@@ -109,63 +118,42 @@ let lastFocusedElement = ''
 completeOrderBtn.addEventListener('click', () => {
     modalOverlay.style.display = "flex"
     body.style.overflow = "hidden"  // disable background scrolling, when modal form opens
-    
-    // set focus, when modal opens
-    lastFocusedElement = document.activeElement
-    // console.log(lastFocusedElement)
-    modalOverlay.querySelector('input').focus() // focus first input in modal
+    lastFocusedElement = document.activeElement // stores lastFocusedElement, when modal opens
+    modalOverlay.querySelector('input').focus() // focus first input field in modal
 })
 
-modalCloseBtn.addEventListener('click', () => {
+modalCloseBtn.addEventListener('click', () => closeModal())
+
+function closeModal(){
     modalOverlay.style.display = "none"
     body.style.overflow = ""    // restores background scrolling, when modal form closes
-    
-    lastFocusedElement.focus() // restore focus to last focused element
-})
-
-// MODAL - payment form data
-
-// const payBtn = document.getElementById("pay-btn")
-const paymentForm = document.getElementById("payment-form")
-
-paymentForm.addEventListener('submit', (e) => {
-    e.preventDefault()
-    const paymentFormData = new FormData(paymentForm)
-    const customersName = paymentFormData.get('customersName')
-    
-    renderThanksMessage(customersName)
-    
-    modalOverlay.style.display = "none"
-    body.style.overflow = ""    // restores background scrolling, when modal form closes
-    lastFocusedElement.focus() // restore focus to last focused element
-    
-    // ordered items array clearance
-    orderedItemsArray = []
-    // renderOrder()
-    yourOrderSection.style.display = "none"
-})
-
-// THANKS MESSAGE - render thanks message
-
-function renderThanksMessage(customersName){
-    // const thanksMessage = document.getElementById('thanks-message')
-    
-    thanksMessage.textContent = `Thanks, ${customersName}! Your order is on its way!`
-    thanksMessage.style.display = 'block'
+    lastFocusedElement.focus()  // restores focus to last focused element
 }
 
+// ---- payment form data ----
 
-// task: make Total price work ✅
-// task: rename function to "render your order" ✅
-// task: make Your order display="none", when order list is empty ✅
-// task: nastylovat modal ✅
-// task: JS for modal - appear/hide/submit-pay ✅
-// task: nastylovat finalnu hlasku ✅
-// task: ziskat hodnotu (meno) z formularu ✅
-// task: vypisat finalnu hlasku ✅
-// task: ked submitnem objednavku, premazat staru objednavku ✅
-// task: pozriet sa na: TypeError: undefined is not an object (evaluating 'menuArray[e.target.id].name') ✅
-// task: rovnako ako je spraveny remove btn, spravit aj + btn ✅
-// task: restore scrolling (in Safari) after submitting a form - check ChatGPT answer
-// task: remove Thanks message, after submitting an order and start choosing new items ✅
-// task: possibly adjust width to max-width
+const paymentForm = document.getElementById("payment-form")
+
+paymentForm.addEventListener('submit', function(e) {
+    e.preventDefault()
+    
+    closeModal()
+    
+    orderedItemsArray = [] // clearing ordered items array
+    
+    yourOrderSection.style.display = "none"
+    
+    const paymentFormData = new FormData(paymentForm)
+    const customersName = paymentFormData.get('customersName')
+
+    renderThanksMessage(customersName)
+})
+
+// -------- THANKS MESSAGE --------
+
+// ---- render thanks message ----
+
+function renderThanksMessage(customersName){    
+    thanksMessage.textContent = `Thanks, ${customersName}! Your order is on its way!`
+    thanksMessage.style.display = "block"
+}

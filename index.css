@@ -1,48 +1,42 @@
-/* -------- COMMON STYLES -------- */
+                /* -------- COMMON STYLES -------- */
 
 h1, h2 {
     margin: 0;
     font-weight: 400;
 }
 
-                /* -------- BODY -------- */
+                /* ---------------- BODY ---------------- */
 
 body {
     padding: 0;
     margin: 0 auto;
-    
-    max-width: 600px;
-    /* outline: 2px solid gray; */
-    /* background-color: yellow; */
-    
+    width: 600px;    
     font-family: "Smythe", system-ui;
 }
 
-                /* -------- HEADER -------- */
+                /* ---------------- HEADER ---------------- */
 
 header {
     background-image: url("./images/header-background.png");
     background-size: cover;
-    
     padding: 46px;
     margin-bottom: 65px;
-    
     color: #FFF;
 }
 
 header h1 {
     margin-bottom: 20px;
-    font-size: 39px;
+    font-size: 40px;
     line-height: 24px;
 }
 
 header h2 {
     margin-bottom: 25px;
-    font-size: 23px;
+    font-size: 25px;
     line-height: 14px;
 }
 
-                /* -------- MAIN -------- */
+                /* ---------------- MAIN ---------------- */
 
 /* ---- MENU SECTION ---- */
 
@@ -56,7 +50,6 @@ main {
     padding-bottom: 50px;
     margin: 45px 0px;
     border-bottom: 1px solid #D2D2D2;
-    /* outline: 2px solid red; */
 }
 
 .item-info {
@@ -65,9 +58,6 @@ main {
 
 .item-img {
     margin: 0;
-    /* width: 70px; */
-    /* height: 90px; */
-    /* background-color: green; */
     font-size: 80px;
     opacity: 0.72;
 }
@@ -118,11 +108,16 @@ main {
 
 /* ---- YOUR ORDER SECTION ---- */
 
-/* -- ordered items list -- */
+.your-order-section {
+    display: none;
+}
+
 .your-order-section > h2:first-child {
     text-align: center;
     margin-bottom: 65px;
 }
+
+/* -- ordered items list -- */
 
 .ordered-items-list {
     list-style: none;
@@ -135,10 +130,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
-    margin-bottom: 10px;
-    
-    /* outline: 2px solid red; */
+    margin-bottom: 10px;    
 }
 
 .ordered-item-control {
@@ -203,18 +195,16 @@ main {
 
 .thanks-message {
     font-size: 32px;
-    line-height: 35px;
+    line-height: 17px;
     font-weight: 400;
     text-align: center;
     color: #065F46;
-    
     background-color: #ECFDF5;
     padding: 50px 60px;
-    
     display: none;
 }
 
-/* ---- MODAL - PAYMENT ---- */
+                /* ---------------- MODAL - PAYMENT ---------------- */
 
 .modal-overlay {
     display: none;
