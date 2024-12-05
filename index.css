@@ -10,7 +10,7 @@ h1, h2 {
 body {
     padding: 0;
     margin: 0 auto;
-    width: 600px;    
+    max-width: 600px;    
     font-family: "Smythe", system-ui;
 }
 
